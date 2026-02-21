@@ -1,491 +1,581 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitalityPrime</title>
-  <script src="https://cdn.tailwindcss.com/3.4.1"></script>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://unpkg.com/lucide-react@0.263.1/dist/umd/lucide-react.js"></script>
-  <style>
-    @keyframes shimmer {
-      0% { background-position: 0 0; }
-      100% { background-position: 40px 40px; }
-    }
-    @keyframes bounce-slow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .animate-bounce-slow {
-      animation: bounce-slow 3s ease-in-out infinite;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nigerian Man's Stamina Assessment</title>
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#ee5b2b",
+                        "primary-dark": "#d04a20",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#18181b", 
+                        "card-dark": "#27272a", 
+                        "text-main": "#f4f4f5",
+                        "text-muted": "#a1a1aa",
+                    },
+                    fontFamily: {
+                        display: ["Spline Sans", "sans-serif"]
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s infinite linear',
+                        'bounce-slight': 'bounceSlight 0.2s ease-in-out'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        bounceSlight: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(0.98)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Spline Sans', sans-serif; background-color: #18181b; color: #f4f4f5; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #18181b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+        .radial-gradient { background: radial-gradient(circle at center, rgba(238,91,43,0.15) 0%, transparent 70%); }
+        .glass-panel { background: rgba(39, 39, 42, 0.7); backdrop-filter: blur(10px); }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
+    <div id="root"></div>
 
-    const { useState, useEffect } = React;
-    const { ShieldCheck, ArrowRight, CheckCircle2, Activity, Zap, Lock, Star, ChevronRight, Clock, Sparkles, Heart } = LucideReact;
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-    const EBOOK_COVER_URL = "https://i.ibb.co/nMdBxLfZ/Untitled-design-4-removebg-preview.png";
-    const SELAR_CHECKOUT_URL = "https://selar.co/your-product-link"; // Replace with your actual Selar link
+        const questions = [
+            {
+                id: 1,
+                layer: "Surface",
+                question: "What is your primary goal for taking this assessment today?",
+                options: [
+                    { text: "Last longer & improve stamina", icon: "timer" },
+                    { text: "Boost daily energy & beat fatigue", icon: "bolt" },
+                    { text: "Regain my morning vitality", icon: "wb_sunny" },
+                    { text: "All of the above", icon: "done_all" }
+                ]
+            },
+            {
+                id: 2,
+                layer: "Symptom (Why 1)",
+                question: "When it comes to your stamina or energy, what is the most frustrating part right now?",
+                options: [
+                    { text: "Running out of gas too quickly", icon: "battery_0_bar" },
+                    { text: "Inconsistent performance", icon: "trending_down" },
+                    { text: "Hard to get in the mood after work", icon: "work_history" },
+                    { text: "Relying on artificial stimulants", icon: "science" }
+                ]
+            },
+            {
+                id: 3,
+                layer: "Situational (Why 2)",
+                question: "When do you notice this energy drop the most?",
+                options: [
+                    { text: "During intimate moments", icon: "favorite" },
+                    { text: "Mid-afternoon at work", icon: "schedule" },
+                    { text: "Right when I wake up", icon: "bed" },
+                    { text: "It's a constant feeling lately", icon: "all_inclusive" }
+                ]
+            },
+            {
+                id: 4,
+                layer: "Systemic (Why 3)",
+                question: "Let's look at the root. Which best describes your current lifestyle?",
+                options: [
+                    { text: "High-stress/Long hours (The hustle)", icon: "speed" },
+                    { text: "Mostly sitting/Sedentary", icon: "chair" },
+                    { text: "Poor diet/Irregular meals", icon: "restaurant" },
+                    { text: "Active but constantly exhausted", icon: "directions_run" }
+                ]
+            },
+            {
+                id: 5,
+                layer: "Structural (Why 4)",
+                question: "How have you tried to solve this so far?",
+                options: [
+                    { text: "Energy drinks or caffeine", icon: "local_cafe" },
+                    { text: "Local bitters or random supplements", icon: "medication" },
+                    { text: "Ignoring it and hoping it improves", icon: "visibility_off" },
+                    { text: "This is my first time seeking a real solution", icon: "search" }
+                ]
+            },
+            {
+                id: 6,
+                layer: "Fundamental (Why 5)",
+                question: "Be honest in this safe space—how is this affecting you internally?",
+                options: [
+                    { text: "I feel embarrassed or less confident", icon: "mood_bad" },
+                    { text: "I feel disconnected from my partner", icon: "link_off" },
+                    { text: "I'm worried it's my age catching up", icon: "hourglass_empty" },
+                    { text: "I just feel frustrated with my body", icon: "sentiment_dissatisfied" }
+                ]
+            },
+            {
+                id: 7,
+                layer: "Identity",
+                question: "If you could fix this completely, what would it mean for you?",
+                options: [
+                    { text: "Feel like a strong, capable man again", icon: "fitness_center" },
+                    { text: "Enjoy intimacy without performance anxiety", icon: "psychology" },
+                    { text: "Have the energy to dominate my day", icon: "workspace_premium" },
+                    { text: "Stop worrying about letting my partner down", icon: "shield_person" }
+                ]
+            },
+            {
+                id: 8,
+                layer: "Demographic",
+                question: "To ensure your protocol is biologically accurate, what age bracket are you in?",
+                options: [
+                    { text: "25 - 34", icon: "looks_one" },
+                    { text: "35 - 44", icon: "looks_two" },
+                    { text: "45 - 54", icon: "looks_3" },
+                    { text: "55+", icon: "looks_4" }
+                ]
+            },
+            {
+                id: 9,
+                layer: "Commitment",
+                question: "Are you ready to ditch the quick fixes and commit to a natural, science-backed protocol?",
+                options: [
+                    { text: "Yes, absolutely.", icon: "task_alt" },
+                    { text: "I'm ready to see what it takes.", icon: "verified" }
+                ]
+            }
+        ];
 
-    function App() {
-      const [step, setStep] = useState('home');
-      const [currentQuestion, setCurrentQuestion] = useState(0);
-      const [answers, setAnswers] = useState({});
-      const [loadingText, setLoadingText] = useState("Analyzing your responses...");
-      const [progress, setProgress] = useState(15);
+        const App = () => {
+            const [view, setView] = useState('home'); // home, quiz, loading, results
+            const [currentQuestion, setCurrentQuestion] = useState(0);
+            const [answers, setAnswers] = useState({});
+            const [loadingText, setLoadingText] = useState("Analyzing your responses...");
 
-      const questions = [
-        {
-          question: "When it comes to your physical energy and intimate life, what's your primary goal right now?",
-          options: [
-            "Sustaining higher physical energy throughout the day",
-            "Lasting longer and feeling more in control during intimacy",
-            "Rebuilding my raw confidence and drive",
-            "Creating a deeper, stress-free connection with my partner"
-          ]
-        },
-        {
-          question: "When do you typically notice this becoming a challenge or source of pressure?",
-          options: [
-            "Usually after a long, exhausting day of work",
-            "Right before intimacy (the anticipation/anxiety)",
-            "During the act when I feel I might lose momentum",
-            "It's a subtle, constant worry in the back of my mind"
-          ]
-        },
-        {
-          question: "In those moments where your body's timing doesn't align with your mind, how does it internally make you feel?",
-          options: [
-            "Frustrated and annoyed with myself",
-            "Anxious, causing me to overthink and get 'in my head'",
-            "Guilty, like I'm letting my partner down",
-            "Disconnected, making me want to pull away"
-          ]
-        },
-        {
-          question: "What is your usual immediate reaction when faced with that specific feeling?",
-          options: [
-            "I try to ignore it, brush it off, and quickly move on",
-            "I pull away emotionally or physically for a while",
-            "I silently stress about making sure the next time is perfect",
-            "I immediately start searching for quick fixes online"
-          ]
-        },
-        {
-          question: "Looking objectively at your daily routine, how would you describe your baseline energy level?",
-          options: [
-            "Constantly stressed, burnt out, and running on fumes",
-            "Mostly sedentary (desk job, lots of sitting, low activity)",
-            "Physically active, but mentally and emotionally drained",
-            "Somewhat balanced, but I've lost that natural 'spark' I used to have"
-          ]
-        },
-        {
-          question: "How comfortably and openly is this specific topic discussed in your relationship?",
-          options: [
-            "Very openly — we talk about it without any shame",
-            "We mention it briefly, but usually brush past it quickly",
-            "I keep it entirely to myself to avoid worrying or disappointing them",
-            "It feels way too heavy and vulnerable to bring up right now"
-          ]
-        },
-        {
-          question: "If you had to pinpoint the core root cause of this friction holding you back, what do you believe it truly is?",
-          options: [
-            "Physical exhaustion, stress, or just getting older",
-            "Mental blocks, performance anxiety, and overthinking",
-            "A lack of the right natural knowledge (diet, habits, routines)",
-            "The intense pressure of wanting to be the 'perfect' partner"
-          ]
-        },
-        {
-          question: "Deep down, if you could wave a magic wand and resolve this completely tonight, what is the ultimate shift you'd experience?",
-          options: [
-            "Feeling like a complete, unstoppable man again",
-            "Removing all anxiety so I can just be present and enjoy the moment",
-            "Seeing the absolute satisfaction and pride in my partner's eyes",
-            "Waking up every single day with raw, natural vitality and confidence"
-          ]
-        }
-      ];
+            const startQuiz = () => {
+                setView('quiz');
+                window.scrollTo(0, 0);
+            };
 
-      const handleStartQuiz = () => {
-        window.scrollTo(0, 0);
-        setStep('quiz');
-      };
+            const handleAnswer = (optionIndex) => {
+                const newAnswers = { ...answers, [currentQuestion]: optionIndex };
+                setAnswers(newAnswers);
 
-      const handleAnswer = (answerIndex) => {
-        if (navigator.vibrate) navigator.vibrate(50);
-        setAnswers({ ...answers, [currentQuestion]: answerIndex });
-        setTimeout(() => {
-          if (currentQuestion < questions.length - 1) {
-            setCurrentQuestion(currentQuestion + 1);
-            const newProgress = 15 + ((currentQuestion + 1) / questions.length) * 80;
-            setProgress(newProgress);
-            window.scrollTo(0, 0);
-          } else {
-            setProgress(100);
-            setStep('loading');
-          }
-        }, 400);
-      };
+                // Add a slight delay for the micro-interaction dopamine hit
+                setTimeout(() => {
+                    if (currentQuestion < questions.length - 1) {
+                        setCurrentQuestion(currentQuestion + 1);
+                        window.scrollTo(0, 0);
+                    } else {
+                        startLoading();
+                    }
+                }, 400);
+            };
 
-      useEffect(() => {
-        if (step === 'loading') {
-          window.scrollTo(0, 0);
-          const timeouts = [
-            setTimeout(() => setLoadingText("Scanning your energy profile..."), 1200),
-            setTimeout(() => setLoadingText("Identifying your core roadblock..."), 2500),
-            setTimeout(() => setLoadingText("Customizing your natural action plan..."), 4000),
-            setTimeout(() => setStep('result'), 5500)
-          ];
-          return () => timeouts.forEach(clearTimeout);
-        }
-      }, [step]);
+            const startLoading = () => {
+                setView('loading');
+                window.scrollTo(0, 0);
+                
+                // Anticipation build sequence
+                setTimeout(() => setLoadingText("Identifying root causes..."), 1500);
+                setTimeout(() => setLoadingText("Cross-referencing lifestyle factors..."), 3000);
+                setTimeout(() => setLoadingText("Generating personalized protocol..."), 4500);
+                setTimeout(() => setView('results'), 6000);
+            };
 
-      return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 font-sans" style={{fontFamily: 'sans-serif'}}>
+            if (view === 'home') {
+                return (
+                    <div className="min-h-screen flex flex-col items-center">
+                        {/* Top Navigation */}
+                        <nav className="w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center z-10">
+                            <div className="font-bold text-xl tracking-tight flex items-center gap-2">
+                                <span className="material-symbols-outlined text-primary">vital_signs</span>
+                                <span>Men's<span className="text-primary">Vitality</span></span>
+                            </div>
+                            <div className="hidden md:flex gap-8 text-sm font-medium text-text-muted">
+                                <a href="#" className="hover:text-white transition-colors">About</a>
+                                <a href="#" className="hover:text-white transition-colors">How It Works</a>
+                            </div>
+                            <button onClick={startQuiz} className="bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white px-5 py-2 rounded-full text-sm font-bold transition-all duration-300">
+                                Start Quiz
+                            </button>
+                        </nav>
 
-          {/* TOP NAVIGATION */}
-          <nav className="border-b border-slate-800 bg-slate-950 sticky top-0 z-50" style={{backdropFilter: 'blur(12px)'}}>
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center border border-amber-500" style={{background: 'rgba(245,158,11,0.1)'}}>
-                  <Zap className="w-5 h-5 text-amber-500" />
-                </div>
-                <span className="font-bold text-xl text-white">Vitality<span className="text-amber-500">Prime</span></span>
-              </div>
+                        {/* Hero Section */}
+                        <main className="flex-grow flex items-center w-full max-w-6xl mx-auto px-6 py-12 md:py-20 relative">
+                            {/* Background decoration */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-              <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#" className="hover:text-amber-400">How It Works</a>
-                <a href="#" className="hover:text-amber-400">The Science</a>
-                <div className="flex items-center gap-1 text-emerald-400 px-3 py-1.5 rounded-full border border-emerald-400" style={{background: 'rgba(52,211,153,0.1)'}}>
-                  <Lock className="w-3 h-3" />
-                  <span className="text-xs">100% Private & Secure</span>
-                </div>
-              </div>
+                            <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                                <div className="space-y-8 animate-fade-in-up">
+                                    <div className="space-y-4">
+                                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-white">
+                                            Thinking About <span className="text-primary">Reclaiming Your Stamina</span> & Energy?
+                                        </h1>
+                                        <p className="text-lg md:text-xl text-text-muted">
+                                            This free 2-minute confidential assessment helps you identify the hidden blocks holding you back—and how to fix them naturally.
+                                        </p>
+                                    </div>
 
-              {step === 'home' && (
-                <button
-                  onClick={handleStartQuiz}
-                  className="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-2.5 rounded-full font-bold"
-                >
-                  Start the Quiz
-                </button>
-              )}
-            </div>
-          </nav>
+                                    <div className="space-y-4">
+                                        <div className="flex items-start gap-3">
+                                            <span className="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+                                            <p className="text-white/90">Discover your <span className="text-primary font-semibold">personal stamina block</span></p>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <span className="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+                                            <p className="text-white/90">Find the best <span className="text-primary font-semibold">natural protocol</span> for your lifestyle</p>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <span className="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+                                            <p className="text-white/90">Get a <span className="text-primary font-semibold">personalized recovery roadmap</span> in minutes</p>
+                                        </div>
+                                    </div>
 
-          <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20">
+                                    <div className="pt-4 space-y-3">
+                                        <button 
+                                            onClick={startQuiz}
+                                            className="w-full md:w-auto group relative overflow-hidden bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(238,91,43,0.3)] hover:-translate-y-1 flex items-center justify-center gap-2 text-lg"
+                                        >
+                                            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
+                                            <span className="relative">Take the 60-Second Quiz</span>
+                                            <span className="material-symbols-outlined relative">arrow_forward</span>
+                                        </button>
+                                        <p className="text-xs text-text-muted flex items-center justify-center md:justify-start gap-4">
+                                            <span className="flex items-center gap-1"><span className="material-symbols-outlined text-[16px]">timer</span> Takes 2 mins</span>
+                                            <span className="flex items-center gap-1"><span className="material-symbols-outlined text-[16px]">lock</span> 100% Confidential</span>
+                                        </p>
+                                    </div>
+                                </div>
 
-            {/* HOMEPAGE */}
-            {step === 'home' && (
-              <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-
-                <div className="space-y-8">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700 text-sm font-medium text-amber-400" style={{background: 'rgba(30,41,59,0.5)'}}>
-                    <Activity className="w-4 h-4" />
-                    Takes less than 2 minutes
-                  </div>
-
-                  <div className="space-y-4">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
-                      Thinking About <span className="text-amber-500">Reclaiming Your Stamina?</span>
-                    </h1>
-                    <p className="text-xl text-slate-400 font-light leading-relaxed">
-                      This Free Assessment Helps You <strong className="text-white font-medium">discover your hidden roadblock</strong> so you can restore your natural energy and confidence without clinical interventions.
-                    </p>
-                  </div>
-
-                  <div className="space-y-4 p-6 rounded-2xl border border-slate-800" style={{background: 'rgba(15,23,42,0.5)'}}>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
-                      <p className="text-slate-300"><strong className="text-white">Discover</strong> your specific energy drain profile</p>
+                                <div className="hidden md:flex justify-center relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                                    <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+                                    <img src="https://i.ibb.co/nMdBxLfZ/Untitled-design-4-removebg-preview.png" alt="Ebook Cover" className="relative z-10 w-3/4 object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" />
+                                </div>
+                            </div>
+                        </main>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
-                      <p className="text-slate-300"><strong className="text-white">Find the best</strong> natural protocol for your age and lifestyle</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
-                      <p className="text-slate-300"><strong className="text-white">Get a personalized</strong> step-by-step roadmap in minutes</p>
-                    </div>
-                  </div>
+                );
+            }
 
-                  <div className="pt-4">
-                    <button
-                      onClick={handleStartQuiz}
-                      className="w-full md:w-auto flex items-center justify-center gap-3 text-slate-950 px-8 py-5 rounded-2xl font-black text-lg"
-                      style={{background: 'linear-gradient(to right, #f59e0b, #d97706)'}}
-                    >
-                      <span>Take the 60-Second Quiz</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                    <p className="text-center md:text-left text-sm text-slate-500 mt-4 flex items-center justify-center md:justify-start gap-2">
-                      <ShieldCheck className="w-4 h-4" /> 100% Free & Confidential. No email required.
-                    </p>
-                  </div>
-                </div>
+            if (view === 'quiz') {
+                const question = questions[currentQuestion];
+                const progress = Math.max(15, ((currentQuestion) / questions.length) * 100); // Start at 15% for momentum
 
-                <div className="relative w-full flex items-center justify-center" style={{minHeight: '400px'}}>
-                  <div className="absolute inset-0 rounded-full blur-3xl opacity-30" style={{background: 'radial-gradient(circle, rgba(245,158,11,0.3), rgba(52,211,153,0.1))'}}></div>
-                  <div className="relative z-10 w-full max-w-md">
-                    <img
-                      src={EBOOK_COVER_URL}
-                      alt="The Nigerian Man's Guide to Boosting Stamina"
-                      className="w-full h-auto"
-                      style={{filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))'}}
-                    />
-                  </div>
-
-                  <div className="absolute bottom-10 -left-4 md:-left-12 bg-slate-800 border border-slate-700 p-4 rounded-xl flex items-center gap-4 animate-bounce-slow" style={{zIndex: 20}}>
-                    <div className="flex" style={{marginRight: '4px'}}>
-                      {[1,2,3].map(i => (
-                        <div key={i} className="w-8 h-8 rounded-full bg-slate-600 border-2 border-slate-800 flex items-center justify-center text-xs" style={{marginLeft: i > 1 ? '-8px' : '0'}}>👤</div>
-                      ))}
-                    </div>
-                    <div>
-                      <div className="flex text-amber-400 mb-0.5">
-                        {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-current" />)}
-                      </div>
-                      <p className="text-xs font-bold text-white">Join 2,500+ Men</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* QUIZ */}
-            {step === 'quiz' && (
-              <div className="max-w-2xl mx-auto w-full">
-
-                <div className="mb-10">
-                  <div className="flex justify-between text-sm font-medium text-slate-400 mb-3">
-                    <span>Your Progress</span>
-                    <span className="text-amber-400 font-bold">{Math.round(progress)}%</span>
-                  </div>
-                  <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: `${progress}%`,
-                        background: 'linear-gradient(to right, #f59e0b, #fcd34d)',
-                        transition: 'width 0.7s ease-out'
-                      }}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1" style={{background: 'linear-gradient(to right, transparent, rgba(245,158,11,0.5), transparent)'}}></div>
-
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 leading-snug">
-                    {questions[currentQuestion].question}
-                  </h2>
-
-                  <div className="space-y-4">
-                    {questions[currentQuestion].options.map((option, index) => {
-                      const isSelected = answers[currentQuestion] === index;
-                      return (
-                        <button
-                          key={index}
-                          onClick={() => handleAnswer(index)}
-                          className="w-full text-left p-5 rounded-2xl flex items-center justify-between outline-none"
-                          style={{
-                            border: isSelected ? '2px solid #f59e0b' : '2px solid #334155',
-                            background: isSelected ? 'rgba(245,158,11,0.1)' : 'rgba(30,41,59,0.5)',
-                            color: isSelected ? 'white' : '#cbd5e1',
-                            transition: 'all 0.2s'
-                          }}
-                        >
-                          <span className="text-base sm:text-lg font-medium pr-4">{option}</span>
-                          <div
-                            className="w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0"
-                            style={{
-                              borderColor: isSelected ? '#f59e0b' : '#64748b',
-                              background: isSelected ? '#f59e0b' : 'transparent'
-                            }}
-                          >
-                            {isSelected && <CheckCircle2 className="w-4 h-4 text-slate-900" />}
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <p className="text-center text-slate-500 text-sm mt-6 flex items-center justify-center gap-2">
-                  <Lock className="w-4 h-4" /> Your answers are completely anonymous
-                </p>
-              </div>
-            )}
-
-            {/* LOADING */}
-            {step === 'loading' && (
-              <div className="max-w-md mx-auto w-full text-center py-20">
-                <div className="relative w-32 h-32 mx-auto mb-8">
-                  <div className="absolute inset-0 border-4 border-slate-800 rounded-full"></div>
-                  <div className="absolute inset-0 border-4 border-amber-500 rounded-full border-t-transparent animate-spin"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Activity className="w-10 h-10 text-amber-400 animate-pulse" />
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-3">Compiling Your Results</h3>
-                <p className="text-amber-400 font-medium h-6 animate-pulse">{loadingText}</p>
-
-                <div className="mt-12 space-y-3 text-left bg-slate-900 border border-slate-800 p-6 rounded-2xl">
-                  <div className="flex items-center gap-3 text-slate-400">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500" /> Physical Energy Profile
-                  </div>
-                  <div className="flex items-center gap-3 text-slate-400">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500" /> Psychological Roadblocks
-                  </div>
-                  <div className="flex items-center gap-3 text-slate-400 opacity-50">
-                    <div className="w-5 h-5 border-2 border-slate-600 rounded-full border-t-amber-500 animate-spin"></div> Generating Action Plan
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* RESULTS */}
-            {step === 'result' && (
-              <div className="max-w-3xl mx-auto w-full">
-
-                <div className="text-center mb-10">
-                  <span className="inline-block px-4 py-1.5 rounded-full font-bold text-sm mb-4" style={{background: 'rgba(239,68,68,0.1)', color: '#f87171', border: '1px solid rgba(239,68,68,0.2)'}}>
-                    Analysis Complete
-                  </span>
-                  <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-                    Your Biggest Obstacle Is: <br/>
-                    <span className="text-amber-500">The Performance Pressure Loop</span>
-                  </h1>
-                </div>
-
-                <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-10">
-
-                  <div>
-                    <p className="text-xl text-slate-300 leading-relaxed font-light mb-4">
-                      If you're reading this, take a deep breath. <strong className="text-white">What you are experiencing is incredibly common, completely normal, and definitively not your fault.</strong>
-                    </p>
-                    <p className="text-slate-400 mb-6">
-                      Based on your answers, you're an ambitious man who cares deeply about his relationship. But that exact desire to be the "perfect partner" is creating an invisible weight that is draining your natural stamina.
-                    </p>
-
-                    <div className="p-6 rounded-r-2xl my-8" style={{background: 'rgba(30,41,59,0.5)', borderLeft: '4px solid #f59e0b'}}>
-                      <h3 className="text-white font-bold flex items-center gap-2 mb-3">
-                        <Activity className="w-5 h-5 text-amber-500" /> Why This Is Happening
-                      </h3>
-                      <p className="text-slate-300 text-base">
-                        When you experience even a minor setback or dip in energy, your brain flags it as a "threat." The next time you are intimate, your body subconsciously floods with cortisol (the stress hormone). This cortisol restricts blood flow, kills natural dopamine, and forces you "into your head" instead of being in the moment. You aren't losing your edge physically — your nervous system is just misfiring due to pressure.
-                      </p>
-                    </div>
-
-                    <p className="text-slate-400">
-                      But if this cycle continues, the gap between you and your partner will slowly widen. The anxiety builds before every encounter, turning what should be a moment of deep connection into a stressful performance test. You deserve better than feeling like a guest in your own body.
-                    </p>
-                  </div>
-
-                  <hr className="border-slate-800" />
-
-                  <div className="flex flex-col md:flex-row gap-8 items-center">
-                    <div className="w-full md:w-1/2">
-                      <img src={EBOOK_COVER_URL} alt="Ebook Cover" className="w-full max-w-sm mx-auto" style={{filter: 'drop-shadow(0 20px 50px rgba(245,158,11,0.2))'}} />
-                    </div>
-                    <div className="w-full md:w-1/2 space-y-6">
-                      <h3 className="text-2xl font-bold text-white leading-tight">
-                        That's exactly why I wrote this specific guide for you.
-                      </h3>
-                      <p className="text-slate-400">
-                        <em className="text-white font-medium">The Nigerian Man's Guide to Boosting Stamina, Energy & Sexual Performance Naturally</em> is designed to break the Performance Pressure Loop without pills, clinics, or awkward conversations.
-                      </p>
-
-                      <div className="space-y-4">
-                        <div className="flex items-start gap-3">
-                          <Sparkles className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
-                          <span className="text-slate-300"><strong>Rewire Your Confidence:</strong> Discover the 3-step mental reset to get out of your head and stay anchored in the moment.</span>
+                return (
+                    <div className="min-h-screen flex flex-col bg-background-dark">
+                        {/* Progress Bar Header */}
+                        <div className="sticky top-0 z-50 w-full glass-panel border-b border-white/5 py-4">
+                            <div className="max-w-2xl mx-auto px-6">
+                                <div className="flex flex-col gap-2">
+                                    <div className="flex justify-between items-center text-xs font-medium uppercase tracking-wider text-text-muted">
+                                        <button onClick={() => currentQuestion > 0 ? setCurrentQuestion(currentQuestion - 1) : setView('home')} className="flex items-center gap-1 hover:text-white transition-colors">
+                                            <span className="material-symbols-outlined text-[16px]">arrow_back</span> Back
+                                        </button>
+                                        <span className="text-primary">{Math.round(progress)}% Completed</span>
+                                    </div>
+                                    <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                                        <div 
+                                            className="h-full bg-primary shadow-[0_0_10px_rgba(238,91,43,0.5)] transition-all duration-500 ease-out"
+                                            style={{ width: `${progress}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex items-start gap-3">
-                          <Zap className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
-                          <span className="text-slate-300"><strong>Natural Blood Flow Protocols:</strong> Simple, discreet dietary tweaks using local ingredients that naturally boost stamina and vitality.</span>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <Heart className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
-                          <span className="text-slate-300"><strong>Eradicate Performance Anxiety:</strong> Learn how to communicate non-verbally with your partner to remove pressure instantly.</span>
-                        </div>
-                      </div>
+
+                        {/* Question Area */}
+                        <main className="flex-grow flex flex-col items-center justify-center px-6 py-12">
+                            <div className="w-full max-w-xl w-full animate-fade-in-up" key={currentQuestion}>
+                                <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center leading-tight">
+                                    {question.question}
+                                </h2>
+
+                                <div className="space-y-4">
+                                    {question.options.map((opt, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={() => handleAnswer(idx)}
+                                            className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 flex items-center gap-4 group active:scale-[0.98] ${
+                                                answers[currentQuestion] === idx 
+                                                ? 'border-primary bg-primary/10' 
+                                                : 'border-white/10 bg-card-dark hover:border-primary/50 hover:bg-card-dark/80'
+                                            }`}
+                                        >
+                                            <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                                                answers[currentQuestion] === idx ? 'bg-primary text-white' : 'bg-white/5 text-text-muted group-hover:text-primary'
+                                            }`}>
+                                                <span className="material-symbols-outlined">{opt.icon}</span>
+                                            </div>
+                                            <span className={`text-lg font-medium ${answers[currentQuestion] === idx ? 'text-white' : 'text-white/80'}`}>
+                                                {opt.text}
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </main>
                     </div>
-                  </div>
+                );
+            }
 
-                  <div className="rounded-2xl p-6 border border-slate-800" style={{background: '#0f172a'}}>
-                    <p className="text-sm font-bold text-amber-500 uppercase tracking-wider mb-4 text-center">Men Like You Are Breaking The Loop</p>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="bg-slate-900 p-4 rounded-xl border border-slate-800">
-                        <div className="flex text-amber-400 mb-2">
-                          {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-current" />)}
+            if (view === 'loading') {
+                return (
+                    <div className="min-h-screen flex flex-col items-center justify-center bg-background-dark p-6 text-center">
+                        <div className="relative w-32 h-32 mb-8 flex items-center justify-center">
+                            <div className="absolute inset-0 border-4 border-white/10 rounded-full"></div>
+                            <div className="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                            <span className="material-symbols-outlined text-4xl text-primary animate-pulse-slow">health_and_safety</span>
                         </div>
-                        <p className="text-slate-300 text-sm italic mb-3">"I honestly thought it was my age. I didn't realize how much the mental pressure was literally restricting my body. The natural protocols in chapter 3 completely changed my weekends. No more anxiety."</p>
-                        <p className="text-white font-bold text-sm">— Chuka T., 42</p>
-                      </div>
-                      <div className="bg-slate-900 p-4 rounded-xl border border-slate-800">
-                        <div className="flex text-amber-400 mb-2">
-                          {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-current" />)}
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Analyzing Your Profile</h2>
+                        <p className="text-lg text-primary font-medium animate-pulse">{loadingText}</p>
+                        <p className="text-sm text-text-muted mt-8">Please don't close this window...</p>
+                    </div>
+                );
+            }
+
+            // Results View
+            return (
+                <div className="relative flex flex-col min-h-screen w-full overflow-x-hidden bg-background-dark">
+                    <div className="sticky top-0 z-50 w-full glass-panel border-b border-white/5 py-4">
+                        <div className="max-w-2xl mx-auto px-6">
+                            <div className="flex flex-col gap-2">
+                                <div className="flex justify-between items-center text-xs font-medium uppercase tracking-wider text-primary">
+                                    <span>Analysis Complete</span>
+                                    <span>100%</span>
+                                </div>
+                                <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                                    <div className="h-full bg-primary w-full shadow-[0_0_15px_rgba(238,91,43,0.5)]"></div>
+                                </div>
+                            </div>
                         </div>
-                        <p className="text-slate-300 text-sm italic mb-3">"This book felt like it was reading my mind. It removed all the shame I was carrying. My wife actually noticed the difference in my energy within the first two weeks."</p>
-                        <p className="text-white font-bold text-sm">— Bayo A., 35</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="text-center p-8 rounded-3xl border border-amber-500 relative overflow-hidden" style={{background: 'linear-gradient(to bottom, #0f172a, #020617)'}}>
-                    <div className="absolute top-0 left-1/2 w-full h-1" style={{transform: 'translateX(-50%)', background: 'linear-gradient(to right, transparent, #f59e0b, transparent)'}}></div>
-
-                    <p className="text-slate-400 mb-4">
-                      Therapists charge upwards of ₦50,000 per session to uncover these blocks. Clinical prescriptions cost thousands every month (with side effects).
-                    </p>
-
-                    <div className="mb-8">
-                      <span className="text-slate-500 line-through text-lg mr-2">₦10,500</span>
-                      <span className="text-5xl font-black text-white">₦1,900</span>
-                      <p className="text-amber-400 text-sm mt-2 font-medium">One-time payment. Instant Access.</p>
                     </div>
 
-                    <a
-                      href={SELAR_CHECKOUT_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-slate-950 px-10 py-5 rounded-2xl font-black text-xl"
-                      style={{transition: 'all 0.2s'}}
-                    >
-                      <Lock className="w-5 h-5 mr-3" />
-                      Get Your Guide Now - ₦1,900
-                      <ChevronRight className="w-6 h-6 ml-2" />
-                    </a>
+                    <main className="flex-grow flex flex-col items-center pb-20">
+                        {/* Diagnosis Section */}
+                        <section className="w-full max-w-3xl px-6 pt-10 pb-6">
+                            <div className="text-center space-y-2 mb-8 animate-fade-in-up">
+                                <p className="text-text-muted text-sm uppercase tracking-widest font-semibold">Based on your answers</p>
+                                <h1 className="text-3xl md:text-5xl font-bold leading-tight text-white">
+                                    YOUR BIGGEST PERFORMANCE BLOCK IS: <span className="text-primary block mt-2">THE "STRESS-CORTISOL" TRAP</span>
+                                </h1>
+                            </div>
+                            <div className="bg-card-dark border border-white/5 rounded-xl p-6 md:p-8 shadow-2xl relative overflow-hidden group animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+                                <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+                                <div className="relative z-10 flex flex-col gap-4 text-center">
+                                    <span className="inline-flex mx-auto items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 text-primary text-sm font-medium border border-primary/20">
+                                        <span className="material-symbols-outlined text-[18px]">verified</span>
+                                        Scientific Analysis
+                                    </span>
+                                    <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
+                                        First, know that this is common. <span className="text-primary font-bold">85% of men</span> in high-pressure environments face this exact cycle. It is not your fault, and it is entirely reversible.
+                                    </p>
+                                    <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
+                                    <div className="grid md:grid-cols-2 gap-8 text-left mt-2">
+                                        <div>
+                                            <h3 className="text-white text-lg font-bold mb-3 flex items-center gap-2">
+                                                <span className="material-symbols-outlined text-primary">psychology_alt</span>
+                                                The Root Cause
+                                            </h3>
+                                            <p className="text-text-muted text-sm leading-relaxed">
+                                                Chronic stress elevates cortisol, which acts as a biological brake on testosterone production. When cortisol is high, your body enters "survival mode," prioritizing immediate safety over reproductive health and sustained energy.
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-white text-lg font-bold mb-3 flex items-center gap-2">
+                                                <span className="material-symbols-outlined text-primary">ecg_heart</span>
+                                                The Symptom Loop
+                                            </h3>
+                                            <p className="text-text-muted text-sm leading-relaxed">
+                                                This creates a vicious cycle: Fatigue leads to poor performance, which creates more stress, releasing more cortisol. Generic supplements cannot fix this because they don't address the hormonal block.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
-                    <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold" style={{background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.2)', color: '#34d399'}}>
-                      <Clock className="w-4 h-4 animate-pulse" />
-                      BONUS: Free "5-Minute Pre-Intimacy Reset" Audio Guide included for the next 15 buyers today.
-                    </div>
+                        {/* The Bridge */}
+                        <section className="w-full max-w-3xl px-6 py-8 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+                            <div className="flex flex-col gap-6">
+                                <h2 className="text-2xl md:text-3xl font-bold text-center text-white">
+                                    Why You Need A Protocol, Not Pills
+                                </h2>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div className="bg-card-dark/50 border border-white/5 p-5 rounded-lg flex flex-col items-center text-center gap-3 hover:border-primary/30 transition-colors">
+                                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                            <span className="material-symbols-outlined">trending_up</span>
+                                        </div>
+                                        <h3 className="text-white font-bold">Cortisol Spike</h3>
+                                        <p className="text-text-muted text-xs">High stress triggers instant cortisol release, killing drive.</p>
+                                    </div>
+                                    <div className="bg-card-dark/50 border border-white/5 p-5 rounded-lg flex flex-col items-center text-center gap-3 hover:border-primary/30 transition-colors">
+                                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                            <span className="material-symbols-outlined">battery_alert</span>
+                                        </div>
+                                        <h3 className="text-white font-bold">Energy Crash</h3>
+                                        <p className="text-text-muted text-xs">Cellular energy production is blocked at the source.</p>
+                                    </div>
+                                    <div className="bg-card-dark/50 border border-white/5 p-5 rounded-lg flex flex-col items-center text-center gap-3 hover:border-primary/30 transition-colors">
+                                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                            <span className="material-symbols-outlined">sentiment_very_dissatisfied</span>
+                                        </div>
+                                        <h3 className="text-white font-bold">Performance Dip</h3>
+                                        <p className="text-text-muted text-xs">Physical stamina drops significantly when you need it most.</p>
+                                    </div>
+                                </div>
+                                <div className="mt-8 p-6 bg-gradient-to-br from-[#18181b] to-[#27272a] border-l-4 border-primary rounded-r-xl">
+                                    <p className="text-lg text-white font-medium italic">
+                                        "I realized that Nigerian men don't need another generic solution. They need a specific roadmap tailored to our diet, our stress levels, and our lifestyle. That's exactly why I wrote this guide—specifically for people dealing with this."
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
 
-                    <p className="text-slate-500 text-xs mt-6">
-                      Secure checkout via Selar. Your bank statement will show a generic digital purchase for maximum privacy.
-                    </p>
-                  </div>
+                        {/* Product & Offer Section */}
+                        <section className="w-full max-w-4xl px-4 py-12 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+                            <div className="bg-card-dark border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+                                <div className="grid md:grid-cols-2">
+                                    {/* Product Visual */}
+                                    <div className="bg-gradient-to-br from-[#2a2a2e] to-[#18181b] p-8 md:p-12 flex items-center justify-center relative min-h-[300px]">
+                                        <div className="absolute inset-0 radial-gradient"></div>
+                                        <div className="relative z-10 w-48 md:w-64 transform transition-transform duration-500 hover:scale-105">
+                                            <img src="https://i.ibb.co/nMdBxLfZ/Untitled-design-4-removebg-preview.png" alt="Ebook Cover" className="w-full drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]" />
+                                        </div>
+                                    </div>
 
+                                    {/* Sales Copy */}
+                                    <div className="p-8 md:p-10 flex flex-col justify-center bg-black/20">
+                                        <div className="mb-4 inline-flex self-start px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold border border-green-500/20">
+                                            INSTANT DOWNLOAD
+                                        </div>
+                                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Reclaim Your Edge in 14 Days</h2>
+                                        
+                                        <p className="text-text-muted text-sm mb-6">People spend tens of thousands trying to figure this out. You get the exact blueprint today.</p>
+
+                                        <ul className="space-y-3 mb-8">
+                                            <li className="flex items-start gap-3">
+                                                <span className="material-symbols-outlined text-primary shrink-0 text-xl">check_circle</span>
+                                                <span className="text-sm text-white/90">Wake up with morning vitality again</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <span className="material-symbols-outlined text-primary shrink-0 text-xl">check_circle</span>
+                                                <span className="text-sm text-white/90">Last longer naturally without pills</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <span className="material-symbols-outlined text-primary shrink-0 text-xl">check_circle</span>
+                                                <span className="text-sm text-white/90">Dietary hacks for the Nigerian market</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <span className="material-symbols-outlined text-primary shrink-0 text-xl">check_circle</span>
+                                                <span className="text-sm text-white/90">Restore focus and mental clarity</span>
+                                            </li>
+                                        </ul>
+                                        <div className="space-y-4">
+                                            <div className="flex items-end gap-3">
+                                                <span className="text-text-muted line-through text-lg">₦15,000</span>
+                                                <span className="text-white text-4xl font-bold tracking-tight">₦1,900</span>
+                                                <span className="text-primary text-xs font-bold bg-primary/10 px-2 py-1 rounded mb-2 border border-primary/20">-87% OFF</span>
+                                            </div>
+                                            
+                                            <a href="https://selar.co" target="_blank" className="w-full block group relative overflow-hidden bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(238,91,43,0.3)] hover:shadow-[0_0_30px_rgba(238,91,43,0.5)] hover:-translate-y-0.5 text-center">
+                                                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
+                                                <span className="relative flex items-center justify-center gap-2 text-lg">
+                                                    GET YOUR GUIDE NOW
+                                                    <span className="material-symbols-outlined">arrow_forward</span>
+                                                </span>
+                                            </a>
+                                            
+                                            <div className="flex items-center justify-center gap-4 text-xs text-text-muted">
+                                                <div className="flex items-center gap-1">
+                                                    <span className="material-symbols-outlined text-base">lock</span>
+                                                    Secure Payment
+                                                </div>
+                                                <div className="h-1 w-1 bg-text-muted rounded-full"></div>
+                                                <div className="flex items-center gap-1">
+                                                    <span className="material-symbols-outlined text-base">download</span>
+                                                    PDF Access
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Social Proof */}
+                        <section className="max-w-2xl px-6 w-full animate-fade-in-up" style={{animationDelay: '0.8s'}}>
+                            <div className="bg-card-dark/50 border border-white/5 rounded-xl p-6 flex flex-col md:flex-row gap-6 items-center hover:border-white/10 transition-colors">
+                                <div className="flex-shrink-0">
+                                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-900 border-2 border-primary flex items-center justify-center text-xl font-bold text-white shadow-lg">
+                                        T
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-2 text-center md:text-left">
+                                    <div className="flex justify-center md:justify-start text-yellow-500 text-sm">
+                                        <span className="material-symbols-outlined text-[18px]" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
+                                        <span className="material-symbols-outlined text-[18px]" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
+                                        <span className="material-symbols-outlined text-[18px]" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
+                                        <span className="material-symbols-outlined text-[18px]" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
+                                        <span className="material-symbols-outlined text-[18px]" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
+                                    </div>
+                                    <p className="text-white/80 text-sm italic">"I was skeptical because of the price, but the chapter on 'Lagos Stress' hit home. My energy levels changed in just 2 weeks. My wife noticed the difference immediately."</p>
+                                    <p className="text-white font-bold text-sm">— Tunde A., Lagos</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Footer */}
+                        <footer className="mt-16 text-center text-text-muted text-xs px-6">
+                            <p className="mb-2 font-medium">100% Secure Checkout via Selar.</p>
+                            <div className="flex justify-center gap-4 opacity-50 mb-6">
+                                <span className="material-symbols-outlined text-2xl">credit_card</span>
+                                <span className="material-symbols-outlined text-2xl">account_balance_wallet</span>
+                                <span className="material-symbols-outlined text-2xl">verified_user</span>
+                            </div>
+                            <p className="opacity-40">&copy; {new Date().getFullYear()} Nigerian Man's Health. All rights reserved.</p>
+                        </footer>
+                    </main>
                 </div>
-              </div>
-            )}
-          </main>
-        </div>
-      );
-    }
+            );
+        };
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  </script>
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
