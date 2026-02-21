@@ -1,615 +1,491 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital_nomads</title>
-  <!-- Meta Pixel Code -->
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2678652215834689');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2678652215834689&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<!-- End Meta Pixel Code -->
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Tailwind Config -->
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            medium: [
-              'charter',
-              'Bitstream Charter',
-              'Sitka Text',
-              'Cambria',
-              'serif'
-            ],
-          },
-        },
-      },
+  <title>VitalityPrime</title>
+  <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/lucide-react@0.263.1/dist/umd/lucide-react.js"></script>
+  <style>
+    @keyframes shimmer {
+      0% { background-position: 0 0; }
+      100% { background-position: 40px 40px; }
     }
-  </script>
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-bounce-slow {
+      animation: bounce-slow 3s ease-in-out infinite;
+    }
+  </style>
 </head>
-
-<body class="bg-white dark:bg-[#121212] text-[#242424] dark:text-[#e6e6e6] font-medium">
-
-<!-- TOP NAV -->
-<header class="border-b border-gray-200 dark:border-gray-800">
-  <div class="max-w-[1336px] mx-auto px-6 py-4 flex items-center justify-between">
-
-    <div class="flex items-center gap-5">
-      <!-- Hamburger -->
-      <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-        <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-
-      <!-- Logo -->
-      <span class="font-medium text-[25px] tracking-tight">DIGITAL NOMADS</span>
-    </div>
-
-    <div class="flex items-center gap-6">
-      <!-- Search -->
-      <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="8"/>
-        <path stroke-linecap="round" d="M21 21l-4.3-4.3"/>
-      </svg>
-
-      
-    </div>
-  </div>
-</header>
-
-<!-- ARTICLE HEADER -->
-<main class="max-w-[680px] mx-auto px-6 pt-14">
-
-  <!-- Title -->
-  <h1
-    class="font-medium font-bold text-[34px] leading-[40px] tracking-[-0.011em] mb-6 font-medium font-medium"
-    style="font-family: charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;"
-  >
-    Why did Hilda Baci, who already has a flourishing business, decide to sell digital products?
-  </h1>
-
-  <!-- Subtitle -->
-  <p class="text-[22px] leading-[30px] text-[#6b6b6b] dark:text-[#a8a8a8] mb-8">
-    Monetizing expertise beyond physical limits
-  </p>
-
-  <!-- Meta -->
-  <div class="text-[14px] text-[#6b6b6b] dark:text-[#a8a8a8] mb-8">
-    1 min read · jan 14, 2026
-  </div>
-
-  <!-- Author -->
-  <div class="flex items-center justify-between mb-10">
-
-    <div class="flex items-center gap-3">
-      <img
-        src="https://i.ibb.co/JjD57qBq/Screenshot-20251211-124444.png"
-        class="w-10 h-10 rounded-full"
-        alt="Author"
-      />
-
-      <div class="flex items-center gap-1">
-        <span class="text-[15px] font-medium">ETINOSA</span>
-
-        <!-- Verified -->
-        <svg class="w-4 h-4 text-[#1a8917]" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2l2.39 4.85L20 7.27l-4 3.9L16.78 17 12 14.77 7.22 17 8 11.17l-4-3.9 5.61-.42L12 2z"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Follow -->
-    <button
-      class="text-[14px] px-4 py-[6px] rounded-full border border-[#242424] dark:border-[#e6e6e6] hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-    >
-      Follow
-    </button>
-  </div>
-
-  <!-- ACTIONS -->
-  <div class="flex items-center gap-3">
-
-    <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-[14px]">
-      ▶ Listen
-    </button>
-
-    <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-[14px]">
-      ⤴ Share
-    </button>
-
-    <button class="flex items-center px-3 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-[14px]">
-      ⋯
-    </button>
-
-  </div>
-  
-  <div class="mt-16 space-y-6 text-lg leading-relaxed text-gray-200">
-
-  <img
-    src="https://i.ibb.co/fd0HnD6g/45380975.jpg"
-    alt="Emotional Moment"
-    class="w-full max-w-md mx-auto rounded-xl shadow-xl mb-10"
-  />
-
-   <div class="mt-24 bg-[] text-gray-200 px- py-6 max-w-3xl mx-auto space-y-6 leading-relaxed">
-
-  <p class="font-medium">
-    You know Hilda Baci.
-  </p>
-
-  <p>
-    The chef who broke the cooking record.
-  </p>
-
-  <p class="text-xl font-semibold text-indigo-300">
-    But do you know her BIG secret?
-  </p>
-
-  <p class="font-semibold text-green-400">
-    She made ₦208,000,000 in just over a month.
-  </p>
-
-  <p>
-    Not from cooking.
-  </p>
-
-  <p>
-    Not from her restaurant.
-  </p>
-
-  <p>
-    Not from brand deals.
-  </p>
-
-  <p class="font-bold">
-    She sold a course.
-  </p>
-
-  <div class="pt-4 border-t border-gray-700"></div>
-
-  <p class="font-medium">
-    Here's what she did:
-  </p>
-
-  <p>
-    She created one digital course.
-  </p>
-
-  <p>
-    Priced it at ₦35,000.
-  </p>
-
-  <p>
-    Sold it to 5,880 students.
-  </p>
-
-  <p class="font-semibold text-green-400">
-    ₦208 million. One month. Done.
-  </p>
-
-  <p>
-    And she already had a successful business.
-  </p>
-
-  <p class="font-medium">
-    But Hilda was smart.
-  </p>
-
-  <p>
-    She didn't leave money on the table.
-  </p>
-
-  <p class="font-semibold text-indigo-300">
-    She turned what she knew into cash.
-  </p>
-
-  <div class="pt-6 border-t border-gray-700"></div>
-
-  <p class="text-xl font-semibold text-indigo-300">
-    Now, let's talk about YOU.
-  </p>
-
-  <p>
-    People ask you questions every day.
-  </p>
-
-  <p>
-    In your DMs.
-  </p>
-
-  <p>
-    In your comments.
-  </p>
-
-  <p>
-    In your inbox.
-  </p>
-
-  <p class="font-medium">
-    They want your help.
-  </p>
-
-  <p>
-    They need your knowledge.
-  </p>
-
-  <p class="text-gray-400">
-    But you're tired.
-  </p>
-
-  <p>
-    You trade time for money.
-  </p>
-
-  <p>
-    You can't clone yourself.
-  </p>
-
-  <p class="font-medium text-red-400">
-    You're losing opportunities.
-  </p>
-
-  <p class="pt-4 font-medium">
-    What if you could sell your knowledge once and make money 1,000 times?
-  </p>
-
-  <p>
-    What if you earned money while you sleep?
-  </p>
-
-  <p>
-    While you travel?
-  </p>
-
-  <p>
-    While you rest?
-  </p>
-
-  <p class="font-semibold text-indigo-300">
-    That's the power of a digital course.
-  </p>
-
-  <div class="pt-6 border-t border-gray-700"></div>
-
-  <p class="font-medium">
-    I help people like you do exactly this.
-  </p>
-
-  <p>
-    No tech stress.
-  </p>
-
-  <p>
-    No months of work.
-  </p>
-
-  <p>
-    No huge audience needed.
-  </p>
-
-  <p class="font-semibold text-green-400">
-    My clients make their first ₦1,000,000 from courses.
-  </p>
-
-  <p>
-    Even complete beginners.
-  </p>
-
-  <p class="italic text-gray-400">
-    You won't hit ₦200 million on day one.
-  </p>
-
-  <p>
-    Let's be real.
-  </p>
-
-  <p class="font-semibold text-indigo-300">
-    But ₦1,000,000 from your first launch?
-  </p>
-
-  <p class="font-medium">
-    That's totally possible.
-  </p>
-
-  <p>
-    Hilda Baci did it.
-  </p>
-
-  <p class="font-semibold">
-    Now it's your turn.
-  </p>
-
-  <p>
-    Your knowledge is valuable.
-  </p>
-
-  <p>
-    Your expertise can pay you.
-  </p>
-
-  <p class="text-xl font-semibold text-green-400">
-    Your first million is waiting.
-  </p>
-
-  <p class="pt-4 font-medium">
-    Ready to start?
-  </p>
-
-  <p>
-    Click the link below.
-  </p>
-
-  <p>
-    Learn my simple system.
-  </p>
-
-  <p>
-    Create your course in 30 days.
-  </p>
-
-  <a
-    href="https://digital-nomads-blog-izhs.vercel.app/"
-    class="inline-block mt-6 bg-indigo-600 hover:bg-indigo-700 text-white tex-center font-bold py-4 px-8 rounded-lg text-lg transition duration-200 shadow-xl"
-  >
-    YES, SHOW ME HOW TO MAKE MY FIRST ₦1,000,000
-  </a>
-
-  <p class="pt-6 font-medium">
-    Your students are waiting.
-  </p>
-
-  <p class="text-red-400 font-semibold">
-    Stop leaving money on the table.
-  </p>
-
-</div>
-
-
-</main>
-
-</section>
-
-<div class="max-w-3xl mx-auto  p-6 font-sans">
-  <div class="flex justify-between items-center mb-6">
-    <h2 class="text-lg font-semibold text-gray-200">Comment section <span class="text-gray-500 font-normal text-sm"></span></h2>
-    <div class="text-xs text-gray-400">Sort by: <span class="text-blue-400 cursor-pointer">Most Profitable</span></div>
-  </div>
-
-  <div class="flex items-start space-x-3 mb-8 border-b border-gray-800 pb-8">
-    <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-400">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-      </svg>
-    </div>
-    <div class="flex-1">
-      <textarea class="w-full bg-gray-800 border border-gray-700 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-blue-500 transition" placeholder="Ask a question about the 1M launch..." rows="1"></textarea>
-      <div class="flex justify-end mt-2">
-        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-full text-xs font-semibold transition">Post Question</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="flex items-start space-x-3 mb-6">
-    <img src="https://i.pravatar.cc/150?u=1" class="w-12 h-12 rounded-full object-cover" alt="Bisi A." />
-    <div class="flex-1">
-      <div class="bg-gray-800 rounded-2xl px-4 py-3">
-        <p class="font-semibold text-sm text-gray-100">Bisi Akindele</p>
-        <p class="text-sm text-gray-300 mt-1">
-          Honest question: Does this work if you have a small following? I only have 300 followers on IG and I'm not "famous" like Hilda. I'm worried I'll just be talking to myself.
-        </p>
-      </div>
-      <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3 mb-3">
-        <span class="hover:underline cursor-pointer hover:text-gray-300 font-medium">Like</span>
-        <span class="hover:underline cursor-pointer hover:text-gray-300 font-medium">Reply</span>
-        <span>4h ago</span>
-      </div>
-
-      <div class="space-y-4 ml-2 border-l-2 border-gray-800 pl-4">
-        <div class="flex items-start space-x-3">
-          <img src="https://i.ibb.co/5gVQXqwS/Gemini-Generated-Image-s84vtvs84vtvs84v.png" class="w-10 h-10 rounded-full object-cover" alt="Tobi S." />
-          <div class="flex-1">
-            <div class="bg-gray-800 rounded-2xl px-4 py-3">
-              <p class="font-semibold text-sm text-gray-100">Tobi Shonuga</p>
-              <p class="text-sm text-gray-300 mt-1">
-                I thought the same, Bisi! But the "Ads Strategy" in Module 3 changed everything. I started with 400 followers and just hit ₦650k in my first 10 days. The system finds the buyers FOR you.
-              </p>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+
+    const { useState, useEffect } = React;
+    const { ShieldCheck, ArrowRight, CheckCircle2, Activity, Zap, Lock, Star, ChevronRight, Clock, Sparkles, Heart } = LucideReact;
+
+    const EBOOK_COVER_URL = "https://i.ibb.co/nMdBxLfZ/Untitled-design-4-removebg-preview.png";
+    const SELAR_CHECKOUT_URL = "https://selar.co/your-product-link"; // Replace with your actual Selar link
+
+    function App() {
+      const [step, setStep] = useState('home');
+      const [currentQuestion, setCurrentQuestion] = useState(0);
+      const [answers, setAnswers] = useState({});
+      const [loadingText, setLoadingText] = useState("Analyzing your responses...");
+      const [progress, setProgress] = useState(15);
+
+      const questions = [
+        {
+          question: "When it comes to your physical energy and intimate life, what's your primary goal right now?",
+          options: [
+            "Sustaining higher physical energy throughout the day",
+            "Lasting longer and feeling more in control during intimacy",
+            "Rebuilding my raw confidence and drive",
+            "Creating a deeper, stress-free connection with my partner"
+          ]
+        },
+        {
+          question: "When do you typically notice this becoming a challenge or source of pressure?",
+          options: [
+            "Usually after a long, exhausting day of work",
+            "Right before intimacy (the anticipation/anxiety)",
+            "During the act when I feel I might lose momentum",
+            "It's a subtle, constant worry in the back of my mind"
+          ]
+        },
+        {
+          question: "In those moments where your body's timing doesn't align with your mind, how does it internally make you feel?",
+          options: [
+            "Frustrated and annoyed with myself",
+            "Anxious, causing me to overthink and get 'in my head'",
+            "Guilty, like I'm letting my partner down",
+            "Disconnected, making me want to pull away"
+          ]
+        },
+        {
+          question: "What is your usual immediate reaction when faced with that specific feeling?",
+          options: [
+            "I try to ignore it, brush it off, and quickly move on",
+            "I pull away emotionally or physically for a while",
+            "I silently stress about making sure the next time is perfect",
+            "I immediately start searching for quick fixes online"
+          ]
+        },
+        {
+          question: "Looking objectively at your daily routine, how would you describe your baseline energy level?",
+          options: [
+            "Constantly stressed, burnt out, and running on fumes",
+            "Mostly sedentary (desk job, lots of sitting, low activity)",
+            "Physically active, but mentally and emotionally drained",
+            "Somewhat balanced, but I've lost that natural 'spark' I used to have"
+          ]
+        },
+        {
+          question: "How comfortably and openly is this specific topic discussed in your relationship?",
+          options: [
+            "Very openly — we talk about it without any shame",
+            "We mention it briefly, but usually brush past it quickly",
+            "I keep it entirely to myself to avoid worrying or disappointing them",
+            "It feels way too heavy and vulnerable to bring up right now"
+          ]
+        },
+        {
+          question: "If you had to pinpoint the core root cause of this friction holding you back, what do you believe it truly is?",
+          options: [
+            "Physical exhaustion, stress, or just getting older",
+            "Mental blocks, performance anxiety, and overthinking",
+            "A lack of the right natural knowledge (diet, habits, routines)",
+            "The intense pressure of wanting to be the 'perfect' partner"
+          ]
+        },
+        {
+          question: "Deep down, if you could wave a magic wand and resolve this completely tonight, what is the ultimate shift you'd experience?",
+          options: [
+            "Feeling like a complete, unstoppable man again",
+            "Removing all anxiety so I can just be present and enjoy the moment",
+            "Seeing the absolute satisfaction and pride in my partner's eyes",
+            "Waking up every single day with raw, natural vitality and confidence"
+          ]
+        }
+      ];
+
+      const handleStartQuiz = () => {
+        window.scrollTo(0, 0);
+        setStep('quiz');
+      };
+
+      const handleAnswer = (answerIndex) => {
+        if (navigator.vibrate) navigator.vibrate(50);
+        setAnswers({ ...answers, [currentQuestion]: answerIndex });
+        setTimeout(() => {
+          if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
+            const newProgress = 15 + ((currentQuestion + 1) / questions.length) * 80;
+            setProgress(newProgress);
+            window.scrollTo(0, 0);
+          } else {
+            setProgress(100);
+            setStep('loading');
+          }
+        }, 400);
+      };
+
+      useEffect(() => {
+        if (step === 'loading') {
+          window.scrollTo(0, 0);
+          const timeouts = [
+            setTimeout(() => setLoadingText("Scanning your energy profile..."), 1200),
+            setTimeout(() => setLoadingText("Identifying your core roadblock..."), 2500),
+            setTimeout(() => setLoadingText("Customizing your natural action plan..."), 4000),
+            setTimeout(() => setStep('result'), 5500)
+          ];
+          return () => timeouts.forEach(clearTimeout);
+        }
+      }, [step]);
+
+      return (
+        <div className="min-h-screen bg-slate-950 text-slate-100 font-sans" style={{fontFamily: 'sans-serif'}}>
+
+          {/* TOP NAVIGATION */}
+          <nav className="border-b border-slate-800 bg-slate-950 sticky top-0 z-50" style={{backdropFilter: 'blur(12px)'}}>
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center border border-amber-500" style={{background: 'rgba(245,158,11,0.1)'}}>
+                  <Zap className="w-5 h-5 text-amber-500" />
+                </div>
+                <span className="font-bold text-xl text-white">Vitality<span className="text-amber-500">Prime</span></span>
+              </div>
+
+              <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#" className="hover:text-amber-400">How It Works</a>
+                <a href="#" className="hover:text-amber-400">The Science</a>
+                <div className="flex items-center gap-1 text-emerald-400 px-3 py-1.5 rounded-full border border-emerald-400" style={{background: 'rgba(52,211,153,0.1)'}}>
+                  <Lock className="w-3 h-3" />
+                  <span className="text-xs">100% Private & Secure</span>
+                </div>
+              </div>
+
+              {step === 'home' && (
+                <button
+                  onClick={handleStartQuiz}
+                  className="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-2.5 rounded-full font-bold"
+                >
+                  Start the Quiz
+                </button>
+              )}
             </div>
-            <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3">
-              <span class="text-blue-400 cursor-pointer hover:underline">18 Likes</span>
-              <span class="hover:underline cursor-pointer hover:text-gray-300">Reply</span>
-              <span>2h</span>
-            </div>
-          </div>
+          </nav>
+
+          <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20">
+
+            {/* HOMEPAGE */}
+            {step === 'home' && (
+              <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+
+                <div className="space-y-8">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700 text-sm font-medium text-amber-400" style={{background: 'rgba(30,41,59,0.5)'}}>
+                    <Activity className="w-4 h-4" />
+                    Takes less than 2 minutes
+                  </div>
+
+                  <div className="space-y-4">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
+                      Thinking About <span className="text-amber-500">Reclaiming Your Stamina?</span>
+                    </h1>
+                    <p className="text-xl text-slate-400 font-light leading-relaxed">
+                      This Free Assessment Helps You <strong className="text-white font-medium">discover your hidden roadblock</strong> so you can restore your natural energy and confidence without clinical interventions.
+                    </p>
+                  </div>
+
+                  <div className="space-y-4 p-6 rounded-2xl border border-slate-800" style={{background: 'rgba(15,23,42,0.5)'}}>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
+                      <p className="text-slate-300"><strong className="text-white">Discover</strong> your specific energy drain profile</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
+                      <p className="text-slate-300"><strong className="text-white">Find the best</strong> natural protocol for your age and lifestyle</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
+                      <p className="text-slate-300"><strong className="text-white">Get a personalized</strong> step-by-step roadmap in minutes</p>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <button
+                      onClick={handleStartQuiz}
+                      className="w-full md:w-auto flex items-center justify-center gap-3 text-slate-950 px-8 py-5 rounded-2xl font-black text-lg"
+                      style={{background: 'linear-gradient(to right, #f59e0b, #d97706)'}}
+                    >
+                      <span>Take the 60-Second Quiz</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                    <p className="text-center md:text-left text-sm text-slate-500 mt-4 flex items-center justify-center md:justify-start gap-2">
+                      <ShieldCheck className="w-4 h-4" /> 100% Free & Confidential. No email required.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative w-full flex items-center justify-center" style={{minHeight: '400px'}}>
+                  <div className="absolute inset-0 rounded-full blur-3xl opacity-30" style={{background: 'radial-gradient(circle, rgba(245,158,11,0.3), rgba(52,211,153,0.1))'}}></div>
+                  <div className="relative z-10 w-full max-w-md">
+                    <img
+                      src={EBOOK_COVER_URL}
+                      alt="The Nigerian Man's Guide to Boosting Stamina"
+                      className="w-full h-auto"
+                      style={{filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))'}}
+                    />
+                  </div>
+
+                  <div className="absolute bottom-10 -left-4 md:-left-12 bg-slate-800 border border-slate-700 p-4 rounded-xl flex items-center gap-4 animate-bounce-slow" style={{zIndex: 20}}>
+                    <div className="flex" style={{marginRight: '4px'}}>
+                      {[1,2,3].map(i => (
+                        <div key={i} className="w-8 h-8 rounded-full bg-slate-600 border-2 border-slate-800 flex items-center justify-center text-xs" style={{marginLeft: i > 1 ? '-8px' : '0'}}>👤</div>
+                      ))}
+                    </div>
+                    <div>
+                      <div className="flex text-amber-400 mb-0.5">
+                        {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-current" />)}
+                      </div>
+                      <p className="text-xs font-bold text-white">Join 2,500+ Men</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* QUIZ */}
+            {step === 'quiz' && (
+              <div className="max-w-2xl mx-auto w-full">
+
+                <div className="mb-10">
+                  <div className="flex justify-between text-sm font-medium text-slate-400 mb-3">
+                    <span>Your Progress</span>
+                    <span className="text-amber-400 font-bold">{Math.round(progress)}%</span>
+                  </div>
+                  <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${progress}%`,
+                        background: 'linear-gradient(to right, #f59e0b, #fcd34d)',
+                        transition: 'width 0.7s ease-out'
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{background: 'linear-gradient(to right, transparent, rgba(245,158,11,0.5), transparent)'}}></div>
+
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 leading-snug">
+                    {questions[currentQuestion].question}
+                  </h2>
+
+                  <div className="space-y-4">
+                    {questions[currentQuestion].options.map((option, index) => {
+                      const isSelected = answers[currentQuestion] === index;
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => handleAnswer(index)}
+                          className="w-full text-left p-5 rounded-2xl flex items-center justify-between outline-none"
+                          style={{
+                            border: isSelected ? '2px solid #f59e0b' : '2px solid #334155',
+                            background: isSelected ? 'rgba(245,158,11,0.1)' : 'rgba(30,41,59,0.5)',
+                            color: isSelected ? 'white' : '#cbd5e1',
+                            transition: 'all 0.2s'
+                          }}
+                        >
+                          <span className="text-base sm:text-lg font-medium pr-4">{option}</span>
+                          <div
+                            className="w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0"
+                            style={{
+                              borderColor: isSelected ? '#f59e0b' : '#64748b',
+                              background: isSelected ? '#f59e0b' : 'transparent'
+                            }}
+                          >
+                            {isSelected && <CheckCircle2 className="w-4 h-4 text-slate-900" />}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <p className="text-center text-slate-500 text-sm mt-6 flex items-center justify-center gap-2">
+                  <Lock className="w-4 h-4" /> Your answers are completely anonymous
+                </p>
+              </div>
+            )}
+
+            {/* LOADING */}
+            {step === 'loading' && (
+              <div className="max-w-md mx-auto w-full text-center py-20">
+                <div className="relative w-32 h-32 mx-auto mb-8">
+                  <div className="absolute inset-0 border-4 border-slate-800 rounded-full"></div>
+                  <div className="absolute inset-0 border-4 border-amber-500 rounded-full border-t-transparent animate-spin"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Activity className="w-10 h-10 text-amber-400 animate-pulse" />
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3">Compiling Your Results</h3>
+                <p className="text-amber-400 font-medium h-6 animate-pulse">{loadingText}</p>
+
+                <div className="mt-12 space-y-3 text-left bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                  <div className="flex items-center gap-3 text-slate-400">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500" /> Physical Energy Profile
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-400">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500" /> Psychological Roadblocks
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-400 opacity-50">
+                    <div className="w-5 h-5 border-2 border-slate-600 rounded-full border-t-amber-500 animate-spin"></div> Generating Action Plan
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* RESULTS */}
+            {step === 'result' && (
+              <div className="max-w-3xl mx-auto w-full">
+
+                <div className="text-center mb-10">
+                  <span className="inline-block px-4 py-1.5 rounded-full font-bold text-sm mb-4" style={{background: 'rgba(239,68,68,0.1)', color: '#f87171', border: '1px solid rgba(239,68,68,0.2)'}}>
+                    Analysis Complete
+                  </span>
+                  <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+                    Your Biggest Obstacle Is: <br/>
+                    <span className="text-amber-500">The Performance Pressure Loop</span>
+                  </h1>
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-10">
+
+                  <div>
+                    <p className="text-xl text-slate-300 leading-relaxed font-light mb-4">
+                      If you're reading this, take a deep breath. <strong className="text-white">What you are experiencing is incredibly common, completely normal, and definitively not your fault.</strong>
+                    </p>
+                    <p className="text-slate-400 mb-6">
+                      Based on your answers, you're an ambitious man who cares deeply about his relationship. But that exact desire to be the "perfect partner" is creating an invisible weight that is draining your natural stamina.
+                    </p>
+
+                    <div className="p-6 rounded-r-2xl my-8" style={{background: 'rgba(30,41,59,0.5)', borderLeft: '4px solid #f59e0b'}}>
+                      <h3 className="text-white font-bold flex items-center gap-2 mb-3">
+                        <Activity className="w-5 h-5 text-amber-500" /> Why This Is Happening
+                      </h3>
+                      <p className="text-slate-300 text-base">
+                        When you experience even a minor setback or dip in energy, your brain flags it as a "threat." The next time you are intimate, your body subconsciously floods with cortisol (the stress hormone). This cortisol restricts blood flow, kills natural dopamine, and forces you "into your head" instead of being in the moment. You aren't losing your edge physically — your nervous system is just misfiring due to pressure.
+                      </p>
+                    </div>
+
+                    <p className="text-slate-400">
+                      But if this cycle continues, the gap between you and your partner will slowly widen. The anxiety builds before every encounter, turning what should be a moment of deep connection into a stressful performance test. You deserve better than feeling like a guest in your own body.
+                    </p>
+                  </div>
+
+                  <hr className="border-slate-800" />
+
+                  <div className="flex flex-col md:flex-row gap-8 items-center">
+                    <div className="w-full md:w-1/2">
+                      <img src={EBOOK_COVER_URL} alt="Ebook Cover" className="w-full max-w-sm mx-auto" style={{filter: 'drop-shadow(0 20px 50px rgba(245,158,11,0.2))'}} />
+                    </div>
+                    <div className="w-full md:w-1/2 space-y-6">
+                      <h3 className="text-2xl font-bold text-white leading-tight">
+                        That's exactly why I wrote this specific guide for you.
+                      </h3>
+                      <p className="text-slate-400">
+                        <em className="text-white font-medium">The Nigerian Man's Guide to Boosting Stamina, Energy & Sexual Performance Naturally</em> is designed to break the Performance Pressure Loop without pills, clinics, or awkward conversations.
+                      </p>
+
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                          <Sparkles className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
+                          <span className="text-slate-300"><strong>Rewire Your Confidence:</strong> Discover the 3-step mental reset to get out of your head and stay anchored in the moment.</span>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <Zap className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
+                          <span className="text-slate-300"><strong>Natural Blood Flow Protocols:</strong> Simple, discreet dietary tweaks using local ingredients that naturally boost stamina and vitality.</span>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <Heart className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
+                          <span className="text-slate-300"><strong>Eradicate Performance Anxiety:</strong> Learn how to communicate non-verbally with your partner to remove pressure instantly.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl p-6 border border-slate-800" style={{background: '#0f172a'}}>
+                    <p className="text-sm font-bold text-amber-500 uppercase tracking-wider mb-4 text-center">Men Like You Are Breaking The Loop</p>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                        <div className="flex text-amber-400 mb-2">
+                          {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-current" />)}
+                        </div>
+                        <p className="text-slate-300 text-sm italic mb-3">"I honestly thought it was my age. I didn't realize how much the mental pressure was literally restricting my body. The natural protocols in chapter 3 completely changed my weekends. No more anxiety."</p>
+                        <p className="text-white font-bold text-sm">— Chuka T., 42</p>
+                      </div>
+                      <div className="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                        <div className="flex text-amber-400 mb-2">
+                          {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-current" />)}
+                        </div>
+                        <p className="text-slate-300 text-sm italic mb-3">"This book felt like it was reading my mind. It removed all the shame I was carrying. My wife actually noticed the difference in my energy within the first two weeks."</p>
+                        <p className="text-white font-bold text-sm">— Bayo A., 35</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-center p-8 rounded-3xl border border-amber-500 relative overflow-hidden" style={{background: 'linear-gradient(to bottom, #0f172a, #020617)'}}>
+                    <div className="absolute top-0 left-1/2 w-full h-1" style={{transform: 'translateX(-50%)', background: 'linear-gradient(to right, transparent, #f59e0b, transparent)'}}></div>
+
+                    <p className="text-slate-400 mb-4">
+                      Therapists charge upwards of ₦50,000 per session to uncover these blocks. Clinical prescriptions cost thousands every month (with side effects).
+                    </p>
+
+                    <div className="mb-8">
+                      <span className="text-slate-500 line-through text-lg mr-2">₦10,500</span>
+                      <span className="text-5xl font-black text-white">₦1,900</span>
+                      <p className="text-amber-400 text-sm mt-2 font-medium">One-time payment. Instant Access.</p>
+                    </div>
+
+                    <a
+                      href={SELAR_CHECKOUT_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-slate-950 px-10 py-5 rounded-2xl font-black text-xl"
+                      style={{transition: 'all 0.2s'}}
+                    >
+                      <Lock className="w-5 h-5 mr-3" />
+                      Get Your Guide Now - ₦1,900
+                      <ChevronRight className="w-6 h-6 ml-2" />
+                    </a>
+
+                    <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold" style={{background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.2)', color: '#34d399'}}>
+                      <Clock className="w-4 h-4 animate-pulse" />
+                      BONUS: Free "5-Minute Pre-Intimacy Reset" Audio Guide included for the next 15 buyers today.
+                    </div>
+
+                    <p className="text-slate-500 text-xs mt-6">
+                      Secure checkout via Selar. Your bank statement will show a generic digital purchase for maximum privacy.
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            )}
+          </main>
         </div>
-      </div>
-    </div>
-  </div>
+      );
+    }
 
-  <div class="flex items-start space-x-3 mb-6">
-    <img src="https://i.ibb.co/T52pM09/Gemini-Generated-Image-oiqgt4oiqgt4oiqg.jpg" class="w-12 h-12 rounded-full object-cover" alt="Chidi O." />
-    <div class="flex-1">
-      <div class="bg-gray-800 rounded-2xl px-4 py-3">
-        <p class="font-semibold text-sm text-gray-100">Chidi Opara</p>
-        <p class="text-sm text-gray-300 mt-1">
-          Is the setup hard? I'm not a "tech person" and the idea of building websites or payment links scares me. I just want to teach my fashion course.
-        </p>
-      </div>
-      <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3 mb-3">
-        <span class="text-blue-400 cursor-pointer hover:underline">42 Likes</span>
-        <span class="hover:underline cursor-pointer hover:text-gray-300">Reply</span>
-        <span>8h ago</span>
-      </div>
-      
-      <div class="space-y-4 ml-2 border-l-2 border-gray-800 pl-4">
-        <div class="flex items-start space-x-3">
-          <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full object-cover" alt="Admin" />
-          <div class="flex-1">
-            <div class="bg-blue-900/30 rounded-2xl px-4 py-3 border border-blue-800">
-              <p class="font-semibold text-sm text-blue-300">Program Support</p>
-              <p class="text-sm text-gray-300 mt-1">
-                @Chidi No tech skills needed! We show you how to use 100% free, "drag-and-drop" tools. If you can send a WhatsApp message, you can set this up in an afternoon.
-              </p>
-            </div>
-            <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3">
-              <span class="hover:underline cursor-pointer hover:text-gray-300">Like</span>
-              <span class="hover:underline cursor-pointer hover:text-gray-300">Reply</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="flex items-start space-x-3 mb-6 bg-blue-900/10 p-2 rounded-xl">
-    <img src="https://i.ibb.co/Kc3qGRzc/Gemini-Generated-Image-3q6pix3q6pix3q6p.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-blue-500" alt="Sarah J." />
-    <div class="flex-1">
-      <div class="bg-gray-800 rounded-2xl px-4 py-3 border border-blue-900/50">
-        <div class="flex items-center space-x-2">
-            <p class="font-semibold text-sm text-gray-100">Sarah J.</p>
-            <span class="bg-green-600 text-[10px] text-white px-1.5 py-0.5 rounded uppercase font-bold">Verified Result</span>
-        </div>
-        <p class="text-sm text-gray-300 mt-1">
-          Literally just withdrew my first ₦1.2 Million. I spent 3 years running my catering business physically and never made this much profit in a single month. Packaging my recipes into a PDF was the best decision of 2024.
-        </p>
-      </div>
-      <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3">
-        <span class="hover:underline cursor-pointer hover:text-gray-300 font-medium">85 Likes</span>
-        <span class="hover:underline cursor-pointer hover:text-gray-300">Reply</span>
-        <span class="text-blue-400">Just now</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="flex items-start space-x-3 mb-6">
-    <img src="https://i.pravatar.cc/150?u=5" class="w-12 h-12 rounded-full object-cover" alt="Emeka" />
-    <div class="flex-1">
-      <div class="bg-gray-800 rounded-2xl px-4 py-3">
-        <p class="font-semibold text-sm text-gray-100">Emeka Eze</p>
-        <p class="text-sm text-gray-300 mt-1">
-          I've wasted so much on "make money" schemes. For the price of a nice dinner, this actually gives you a real business asset. The "Product Selection" worksheet alone is worth the price.
-        </p>
-      </div>
-      <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3 mb-3">
-        <span class="hover:underline cursor-pointer hover:text-gray-300 font-medium">Like</span>
-        <span class="hover:underline cursor-pointer hover:text-gray-300 font-medium">Reply</span>
-        <span>15m ago</span>
-      </div>
-    </div>
-  </div>
-  <div class="flex items-start space-x-3 mb-6">
-  <img src="https://i.pravatar.cc/150?u=6" class="w-12 h-12 rounded-full object-cover" alt="Zainab M." />
-  <div class="flex-1">
-    <div class="bg-gray-800 rounded-2xl px-4 py-3">
-      <p class="font-semibold text-sm text-gray-100">Zainab Musa</p>
-      <p class="text-sm text-gray-300 mt-1">
-        I’m a stay-at-home mum and needed something flexible. I launched my first mini-guide last week and made ₦92k already 😭 I didn’t even tell anyone on my personal page. This actually works.
-      </p>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3 mb-3">
-      <span class="text-blue-400 cursor-pointer hover:underline">27 Likes</span>
-      <span class="hover:underline cursor-pointer hover:text-gray-300">Reply</span>
-      <span>1h ago</span>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-start space-x-3 mb-6">
-  <img src="https://i.ibb.co/4wyvRvvX/Gemini-Generated-Image-aqhws1aqhws1aqhw.jpg" class="w-12 h-12 rounded-full object-cover" alt="Ibrahim K." />
-  <div class="flex-1">
-    <div class="bg-gray-800 rounded-2xl px-4 py-3">
-      <p class="font-semibold text-sm text-gray-100">Ibrahim Kareem</p>
-      <p class="text-sm text-gray-300 mt-1">
-        Not going to lie, I was skeptical. But I followed the roadmap exactly and hit my first ₦150k in sales before day 7. The clarity in this program is unmatched.
-      </p>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3 mb-3">
-      <span class="text-blue-400 cursor-pointer hover:underline">39 Likes</span>
-      <span class="hover:underline cursor-pointer hover:text-gray-300">Reply</span>
-      <span>3h ago</span>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-start space-x-3 mb-6 bg-blue-900/10 p-2 rounded-xl">
-  <img src="https://i.pravatar.cc/150?u=8" class="w-12 h-12 rounded-full object-cover border-2 border-blue-500" alt="Ngozi P." />
-  <div class="flex-1">
-    <div class="bg-gray-800 rounded-2xl px-4 py-3 border border-blue-900/50">
-      <div class="flex items-center space-x-2">
-        <p class="font-semibold text-sm text-gray-100">Ngozi Peters</p>
-        <span class="bg-green-600 text-[10px] text-white px-1.5 py-0.5 rounded uppercase font-bold">Verified Result</span>
-      </div>
-      <p class="text-sm text-gray-300 mt-1">
-        Update: Month 2 and I just crossed ₦2.4M total revenue. Same digital product. Same funnel. This is the definition of leverage.
-      </p>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3">
-      <span class="hover:underline cursor-pointer hover:text-gray-300 font-medium">101 Likes</span>
-      <span class="hover:underline cursor-pointer hover:text-gray-300">Reply</span>
-      <span class="text-blue-400">Just now</span>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-start space-x-3 mb-6">
-  <img src="https://i.pravatar.cc/150?u=9" class="w-12 h-12 rounded-full object-cover" alt="Samuel T." />
-  <div class="flex-1">
-    <div class="bg-gray-800 rounded-2xl px-4 py-3">
-      <p class="font-semibold text-sm text-gray-100">Samuel Taiwo</p>
-      <p class="text-sm text-gray-300 mt-1">
-        This is one of those rare programs that actually over-delivers. No fluff, no hype. Just systems that convert. I wish I found this earlier.
-      </p>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 mt-1 space-x-3 mb-3">
-      <span class="hover:underline cursor-pointer hover:text-gray-300 font-medium">Like</span>
-      <span class="hover:underline cursor-pointer hover:text-gray-300 font-medium">Reply</span>
-      <span>20m ago</span>
-    </div>
-  </div>
-</div>
-
-
-  <div class="text-center mt-8">
-    
-  </div>
-</div>
-
-<footer class="bg-gray-900 text-white py-8 border-t border-gray-800">
-  <div class="container mx-auto px-4">
-    <div class="max-w-5xl mx-auto">
-
-      <!-- Disclaimers -->
-      <div class="mt-6 text-xs text-gray-500 text-center max-w-3xl mx-auto space-y-4" id="footer-disclaimer">
-        <p>
-          DISCLAIMER: The results stated above are my personal results and those of specific customers. Please understand my results are not typical, and I'm not implying you'll duplicate them exactly. The average person who buys any "how-to" information gets little to no results. I am using these references for example purposes only. Your results will vary and depend on many factors including your background, dedication, and individual physiology.
-        </p>
-        <p>
-          This site is not a part of the Facebook website or Facebook Inc. Additionally, This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.
-        </p>
-      </div>
-
-      
-
-    </div>
-  </div>
-</footer>
-
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>
